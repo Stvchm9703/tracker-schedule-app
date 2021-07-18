@@ -1,5 +1,6 @@
 import Head from 'next/head'
-import Image from 'next/image'
+// import Image from 'next/image'
+// import { imageLoader } from '@/libs/image-loader';
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -60,7 +61,7 @@ export default function Home() {
         >
           Powered by{' '}
           <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+            {/* <Image loader={imageLoader} src="vercel.svg" alt="Vercel Logo" width={72} height={16} /> */}
           </span>
         </a>
       </footer>

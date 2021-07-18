@@ -5,11 +5,34 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "gen": "next build && next export"
   },
   "dependencies": {
-    "next": "10.2.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "@date-io/moment": "^2.10.8",
+    "@devexpress/dx-react-core": "^2.7.5",
+    "@devexpress/dx-react-scheduler": "^2.7.5",
+    "@devexpress/dx-react-scheduler-material-ui": "^2.7.5",
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/pickers": "^3.3.10",
+    "axios": "^0.21.1",
+    "carbon-components": "^10.39.0",
+    "carbon-components-react": "^7.39.0",
+    "carbon-icons": "^7.0.7",
+    "ibm-gantt-chart": "^0.5.14",
+    "ibm-gantt-chart-react": "^0.5.14",
+    "next": "^11.0.1",
+    "next-axios": "^1.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "sass": "^1.35.2",
+    "swr": "^0.5.6"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.21",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
+    "typescript": "^4.2"
   }
 }
