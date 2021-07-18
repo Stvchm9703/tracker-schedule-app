@@ -1,7 +1,11 @@
 import '../styles/globals.css'
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+import 'carbon-components/scss/globals/scss/styles.scss';
+
+function ScheduleApp({ Component, pageProps }) {
+  const getLayout = Component.getLayout || ((page) => page)
+
+  return getLayout(<Component {...pageProps} />)
 }
 
-export default MyApp
+export default ScheduleApp
