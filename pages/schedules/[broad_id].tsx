@@ -1,31 +1,17 @@
 import axios from 'axios';
-import React, { Component } from 'react';
-// import ReactDOM from 'react-dom';
-import { GetStaticProps } from 'next';
-import dynamic from "next/dynamic";
+import React from 'react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
-import { Trello } from '../../interfaces/Trello';
+import { Trello } from '@/interfaces/Trello';
 
-import { Header, HeaderName, HeaderGlobalBar, HeaderGlobalAction, Switcher, SwitcherItem, AppSwitcher20, HeaderPanel, Search20, Notification20, SwitcherDivider } from "carbon-components-react";
-import NavLayout from '../../components/Layouts/index';
+import NavLayout from '@/components/Layouts/index';
 
-// // scheduler libs
-// import Paper from '@material-ui/core/Paper';
-// import { ViewState } from '@devexpress/dx-react-scheduler';
-// import {
-//     Scheduler,
-//     MonthView,
-//     Appointments,
-// } from '@devexpress/dx-react-scheduler-material-ui';
-// // end- scheduler
-
-// import Calender from '@/components/Scheduler/calender';
-
+import SchedulerComponent from '@/components/Scheduler/application';
 
 // trello_broad_id : 5k4uPRg7
 const PageFetchTrello = async (trello_broadid: string) => {
-  const { data } = await axios.get(`https://trello.com/b/${trello_broadid}.json`);
+  const { data } = await axios.get(`/api/trello/${trello_broadid}`);
+  // const { data } = await axios.get(`https://trello.com/b/${trello_broadid}.json`);
   return data as Trello;
 }
 
@@ -62,6 +48,9 @@ export default function schedule() {
           </span>
         </div>
       }
+      <SchedulerComponent taskList={data.cards}>
+
+      </SchedulerComponent>
 
       {/* <Calender appointments={appointments} currentDate={currentDate} /> */}
     </>
