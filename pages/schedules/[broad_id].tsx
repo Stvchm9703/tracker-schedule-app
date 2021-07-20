@@ -35,16 +35,15 @@ const PageFetchSchedule = async (trello_broadid: string) => {
   return data;
 }
 
-import test_data from '../../sample_data/time_sample';
+// import test_data from '../../sample_data/time_sample';
 export default function schedule() {
   const router = useRouter()
   const { broad_id } = router.query;
   const { data, error } = useSWR(broad_id, PageFetchTrello);
-  const darta = useSWR(broad_id, PageFetchSchedule);
-  const appointments = test_data;
+  const { appointments = data, er2 } = useSWR(broad_id, PageFetchSchedule);
   const currentDate = '2018-07-17';
-  if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
+  if (error || er2) return (<div>failed to load</div>);
+  if (!data) return (<div>loading...</div>);
   return (
     <>
       <span>
