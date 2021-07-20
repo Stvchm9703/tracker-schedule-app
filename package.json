@@ -9,14 +9,11 @@
     "gen": "next build && next export"
   },
   "dependencies": {
+    "@carbon/ibmdotcom-react": "^1.21.0",
+    "@carbon/ibmdotcom-styles": "^1.21.0",
+    "@carbon/icons-react": "^10.35.0",
     "@date-io/moment": "^2.10.8",
-    "@devexpress/dx-react-core": "^2.7.5",
-    "@devexpress/dx-react-scheduler": "^2.7.5",
-    "@devexpress/dx-react-scheduler-material-ui": "^2.7.5",
-    "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
-    "@material-ui/pickers": "^3.3.10",
-    "@types/luxon": "^1.27.1",
     "axios": "^0.21.1",
     "carbon-components": "^10.39.0",
     "carbon-components-react": "^7.39.0",
@@ -32,6 +29,7 @@
     "swr": "^0.5.6"
   },
   "devDependencies": {
+    "@types/luxon": "^1.27.1",
     "@types/node": "^12.12.21",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",

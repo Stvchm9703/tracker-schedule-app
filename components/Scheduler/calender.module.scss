@@ -1,30 +1,18 @@
 .calender_view {
   position: static;
-  height: 100%;
-  min-height: 650px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+  height: 80vh;
 }
 .week_number_indicator {
   display: block;
-  flex: 0 1 25px;
+  flex: 0 1 35px;
   span{
     padding: 5px;
   }
 }
 
 .day_cell {
-  display: grid;
-  flex: 1 1 0;
-  border: 1px solid #ccc;
   .display_day{
     padding: 5px;
   }
-}
-
-.week_row {
-  display: flex;
-  width: 100%;
-  flex: 1;
+  border: 1px solid #ccc;
 }

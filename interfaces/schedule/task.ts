@@ -20,7 +20,8 @@ export enum TaskStatus {
   InProgress = "InProgress",
   DoneNeedTest = "DoneNeedTest",
   InUAT = "InUAT",
-  Completed = "Completed"
+  Completed = "Completed",
+  Canceled = "Canceled"
 }
 
 export interface Task extends BaseModel {
@@ -41,7 +42,14 @@ export interface Task extends BaseModel {
 
   IssueCard: | string;
   
+  /**
+   * @property Project  
+   * @description the git repositories UUID, 
+   * @type {Date}
+   * @memberof Task
+   */
   Project: UUID;
+
   // url / apps junction
   RoutePath: string;
 
@@ -50,6 +58,7 @@ export interface Task extends BaseModel {
   // Comments: Array<TaskComment>;
 
   Priority: string;
+  
   Catalogy: string;
   Tags: Array<string>;
 

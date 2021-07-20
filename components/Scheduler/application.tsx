@@ -5,7 +5,7 @@ interface IScheduleProps {
 }
 
 interface IScheduleState {
-  displayMode: "calender" | "monthly" | "weeky" | "daily" | "timetable" | "event" | "memberWeekly";
+  displayMode: "calender" | "monthly" | "weeky" | "daily" | "timetable" | "event" | "workThread";
 }
 
 class SchedulerComponent extends React.PureComponent<IScheduleProps, IScheduleState> {

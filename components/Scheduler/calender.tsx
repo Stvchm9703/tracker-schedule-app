@@ -2,6 +2,8 @@ import React from "react";
 import { DateTime } from "luxon";
 import styles from './calender.module.scss';
 
+import { Grid, Row, Column, Tile, AspectRatio } from "carbon-components-react";
+import { Card } from '@carbon/ibmdotcom-react';
 /* eslint-disable max-classes-per-file */
 /* eslint-disable react/no-unused-state */
 
@@ -13,11 +15,16 @@ interface ICalenderProps {
 }
 
 const renderDayCell = (date: DateTime) => (
-  <div key={date.toFormat('yy-mm-dd')} className={`${styles.day_cell} day-${date.toFormat('yy-mm-dd')}`} >
-    <span className={styles.display_day}> {date.month} - {date.day} </span>
-  </div>
+  <Column key={date.toFormat('yy-mm-dd')} className={`${styles.day_cell} day-${date.toFormat('yy-mm-dd')}`} >
+    <AspectRatio ratio={'4x3'}>
+      <Tile id={date.toFormat('yy-mm-dd')} >
+        <span className={styles.display_day}>
+          {`${date.month} - ${date.day}`}
+        </span>
+      </Tile>
+    </AspectRatio>
+  </Column>
 )
-
 
 const CalenderViewComponent = (props: ICalenderProps) => {
   const currentDate: DateTime = DateTime.now();
@@ -40,16 +47,16 @@ const CalenderViewComponent = (props: ICalenderProps) => {
       );
     }
     rendGrid.push(
-      <div key={index} className={`${styles.week_row} week-${index}`}>
-        <div className={styles.week_number_indicator}> <span> {index} </span></div>
+      <Row condensed key={index} className={`week-${index}`}>
+        <Column className={styles.week_number_indicator}> <span> {index} </span></Column>
         {weekObj.map(e => renderDayCell(e))}
-      </div>
+      </Row>
     )
   }
   return (
-    <div className={styles.calender_view}>
+    <Grid fullWidth condensed className={styles.calender_view}>
       {rendGrid}
-    </div>
+    </Grid>
   );
 }
 
