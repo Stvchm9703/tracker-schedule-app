@@ -1,5 +1,7 @@
 @import "@carbon/colors/scss";
 
+
+
 .calender_view {
   position: relative;
 }
@@ -20,7 +22,7 @@
 .day_tile {
   height: 100%;
   transition: background-color 0.4s ease-in-out;
-
+  
   &:hover {
     background-color: $cool-gray-10-hover;
 
