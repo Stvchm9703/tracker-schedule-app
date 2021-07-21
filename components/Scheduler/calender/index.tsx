@@ -4,15 +4,18 @@ import styles from './calender.module.scss';
 
 import { Grid, Row, Column, Tile, SelectableTile, ButtonSet, Button } from "carbon-components-react";
 import { Add16 } from '@carbon/icons-react';
-import { useMouseHovered, useMouseWheel, useLongPress } from "react-use"
+import { useLongPress } from "react-use"
+
+// import { useMouseHovered, useMouseWheel, useLongPress } from "react-use"
 // import { } from "react-use-gesture";
 
 export type IDayCellEvent = (event: MouseEvent | TouchEvent, day: DateTime) => any | void;
+type internalDatyCellEvent = (event: MouseEvent | TouchEvent, day: IDayCellItem) => any | void;
 
 interface ICalenderProps {
   taskList: Array<any>,
-  onDayCellClicked: IDayCellEvent,
-  onDayCellSelected: IDayCellEvent,
+  onDayClicked: IDayCellEvent,
+  onDaySelected: IDayCellEvent,
 }
 
 interface IDayCellItem {
@@ -24,9 +27,11 @@ interface IDayCellItem {
 }
 
 const renderDayCell = (dateItem: IDayCellItem, isSelectable: boolean, onDayCellClicked: IDayCellEvent, onDayCellLongPressed: IDayCellEvent) => {
-  const { date, isSelected, isToday, inMonth } = dateItem;
+  const { date, isToday, inMonth } = dateItem;
   const idKey = date.toFormat('yy-mm-dd');
   const labelClass = isToday ? styles.is_today : '';
+  const tileClass = `${styles.day_tile}  ${(!inMonth ? styles.not_in_month : '')} `;
+
   console.log({ labelClass });
   // long-press event 
   const onLongPress = (e: MouseEvent | TouchEvent) => onDayCellLongPressed(e, date);
@@ -44,7 +49,7 @@ const renderDayCell = (dateItem: IDayCellItem, isSelectable: boolean, onDayCellC
       {!isSelectable &&
         <Tile
           id={idKey}
-          className={`${styles.day_tile}`}
+          className={tileClass}
           onClick={(e: any) => onDayCellClicked(e, date)}
           {...longPressEvent}
         >
@@ -58,6 +63,7 @@ const renderDayCell = (dateItem: IDayCellItem, isSelectable: boolean, onDayCellC
           id={idKey}
           className={`${styles.day_tile}`}
           value={date.toFormat('yy-mm-dd')}
+          onClick={(e: any) => onDayCellClicked(e, date)}
         >
           <span className={labelClass}>
             {`${date.month} - ${date.day}`}
@@ -100,12 +106,19 @@ const CalenderViewComponent = (props: ICalenderProps) => {
 
   // DayCellLongPress
   const [isSelectableState, setSelectableState] = useState(false);
-  const viewOnDayCellLongPressed: IDayCellEvent = (event: MouseEvent | TouchEvent, dateTrig: DateTime) => {
+  const [daySelectedState, setDaySelectedState] = useState(Array<IDayCellItem>());
+  const viewOnDayCellLongPressed: IDayCellEvent = (_: MouseEvent | TouchEvent, dateTrig: DateTime) => {
     // change state;
     console.log('viewOnDayCellLongPressed-', dateTrig.toFormat('yy-mm-dd'));
     setSelectableState(true);
   }
 
+  const viewOnDayCellClicked: IDayCellEvent = (event: MouseEvent | TouchEvent, dateTrig: DateTime) => {
+    if (isSelectableState) {
+      setDaySelectedState([...daySelectedState,])
+    }
+    props.onDayClicked(event, dateTrig);
+  }
 
   // ---
 
@@ -141,7 +154,7 @@ const CalenderViewComponent = (props: ICalenderProps) => {
         index,
         weekObj,
         isSelectableState,
-        props.onDayCellClicked,
+        viewOnDayCellClicked,
         viewOnDayCellLongPressed,
       )
     )
@@ -149,6 +162,7 @@ const CalenderViewComponent = (props: ICalenderProps) => {
   return (
     <>
       <ButtonSet>
+        <div> {currentDate.month}</div>
         <Button
           hasIconOnly
           renderIcon={Add16}

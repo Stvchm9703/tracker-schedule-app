@@ -425,6 +425,11 @@
     "@types/react" "*"
     flatpickr "4.6.1"
 
+"@types/carbon__icons-react@^10.31.1":
+  version "10.31.1"
+  resolved "https://registry.yarnpkg.com/@types/carbon__icons-react/-/carbon__icons-react-10.31.1.tgz#54a2a4044bcd05988691ee22537d21f12891b02a"
+  integrity sha512-DgLWuXd9PhHhOJZ98sDCU5IOAa0znhaNkRrS5TeJu6guYz1sU0xY0rQ2aSdpWe9WUKhgjzBmcL2oKigP3112+A==
+
 "@types/dompurify@^2.0.2":
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/@types/dompurify/-/dompurify-2.2.3.tgz#6e89677a07902ac1b6821c345f34bd85da239b08"

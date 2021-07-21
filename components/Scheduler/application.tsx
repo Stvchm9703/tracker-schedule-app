@@ -31,8 +31,8 @@ class SchedulerComponent extends React.PureComponent<IScheduleProps, IScheduleSt
           {this.state.displayMode === 'calender' &&
             <CalenderViewComponent
               taskList={this.props.taskList}
-              onDayCellClicked={(e, date) => { console.log('CalenderViewComponent,click=', date.toFormat('yy-mm-dd')) }}
-              onDayCellSelected={(e, date) => { console.log('CalenderViewComponent,selected=', date.toFormat('yy-mm-dd')) }}
+              onDayClicked={(e, date) => { console.log('CalenderViewComponent,click=', e, date.toFormat('yy-mm-dd')) }}
+              onDaySelected={(e, date) => { console.log('CalenderViewComponent,selected=', e, date.toFormat('yy-mm-dd')) }}
             />
           }
           {this.state.displayMode === 'monthly' &&

@@ -4,6 +4,9 @@ class scheduleList extends Component{
   static async componentDidMount() {
     
   }
+  render() {
+    return (<></>);
+  }
 }
 
 

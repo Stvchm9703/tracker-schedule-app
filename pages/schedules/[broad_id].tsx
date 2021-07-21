@@ -15,7 +15,8 @@ const PageFetchTrello = async (trello_broadid: string) => {
   return data as Trello;
 }
 
-const PageFetchSchedule = async (trello_broadid: string) => {
+// trello_broadid
+const PageFetchSchedule = async (_: string) => {
   // const { data } = await axios.get(``);
   const data = await axios.get(`/api/schedules`);
   return data;
@@ -26,8 +27,10 @@ export default function schedule() {
   const router = useRouter()
   const { broad_id } = router.query;
   const { data, error } = useSWR(broad_id, PageFetchTrello);
-  const { appointments = data, er2 } = useSWR(broad_id, PageFetchSchedule);
-  const currentDate = '2018-07-17';
+  const schedule = useSWR(broad_id, PageFetchSchedule);
+  // let appointments = schedule.data;
+  let er2 = schedule.error;
+  // const currentDate = '2018-07-17';
   if (error || er2) return (<div>failed to load</div>);
   if (!data) return (<div>loading...</div>);
   return (
@@ -56,7 +59,7 @@ export default function schedule() {
   )
 }
 
-schedule.getLayout = (page) => (
+schedule.getLayout = (page: any) => (
   <NavLayout>
     {page}
   </NavLayout>

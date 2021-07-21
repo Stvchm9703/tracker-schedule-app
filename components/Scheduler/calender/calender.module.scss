@@ -1,3 +1,5 @@
+@import "@carbon/colors/scss";
+
 .calender_view {
   position: static;
   height: 80vh;
@@ -7,7 +9,7 @@
   display: block;
   flex: 0 1 35px;
 }
-.week_number_disp{
+.week_number_disp {
   padding-top: 1rem;
 }
 .day_cell {
@@ -27,5 +29,6 @@
 }
 
 .not_in_month {
-  
+  background-color: $cool-gray-20;
+  color: $cool-gray-90;
 }

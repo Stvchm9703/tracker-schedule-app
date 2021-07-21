@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-export default (req: any, res: any) => {
+export default (_: any, res: any) => {
   const test_data = [
     {
       title: 'Website Re-Design Plan',

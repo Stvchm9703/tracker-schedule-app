@@ -1,4 +1,4 @@
-import { BaseModel } from './base.ts'
+import { BaseModel } from './base'
 export interface UserModel extends BaseModel {
   /**
    * @description staff-id

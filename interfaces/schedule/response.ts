@@ -1,10 +1,10 @@
-import { BaseModel } from "./base.ts";
-export interface ResponseI {
+import { BaseModel } from "./base";
+export type IResponse =  {
   data?: BaseModel | any;
   count: number;
 }
 
-export interface ResponseErrorI {
+export type IResponseError = {
   error: any;
   log: string | any;
 }

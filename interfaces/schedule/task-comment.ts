@@ -1,4 +1,4 @@
-import { BaseModel, UUID } from './base.ts';
+import { BaseModel, UUID } from './base';
 
 
 export enum TaskCommentType {
