@@ -3,7 +3,7 @@ import { DateTime } from "luxon";
 import styles from './calender.module.scss';
 
 import { Grid, Row, Column, Tile, SelectableTile, ButtonSet, Button } from "carbon-components-react";
-import { Add16 } from '@carbon/icons-react';
+import { Add32, ChevronUp32, ChevronDown32, CalendarSettings32 } from '@carbon/icons-react';
 import { useLongPress } from "react-use"
 
 // import { useMouseHovered, useMouseWheel, useLongPress } from "react-use"
@@ -16,6 +16,8 @@ interface ICalenderProps {
   taskList: Array<any>,
   onDayClicked: IDayCellEvent,
   onDaySelected: IDayCellEvent,
+  // onScrollUp: Event,
+  // onScrollDown: Event,
 }
 
 interface IDayCellItem {
@@ -29,7 +31,7 @@ interface IDayCellItem {
 const renderDayCell = (dateItem: IDayCellItem, isSelectable: boolean, onDayCellClicked: IDayCellEvent, onDayCellLongPressed: IDayCellEvent) => {
   const { date, isToday, inMonth } = dateItem;
   const idKey = date.toFormat('yy-mm-dd');
-  const labelClass = isToday ? styles.is_today : '';
+  const labelClass = `${styles.day_label} ${isToday ? styles.is_today : ''}`;
   const tileClass = `${styles.day_tile}  ${(!inMonth ? styles.not_in_month : '')} `;
 
   console.log({ labelClass });
@@ -54,19 +56,19 @@ const renderDayCell = (dateItem: IDayCellItem, isSelectable: boolean, onDayCellC
           {...longPressEvent}
         >
           <span className={labelClass}>
-            {`${date.month} - ${date.day}`}
+            {`${date.day}`}
           </span>
         </Tile>
       }
       {isSelectable &&
         <SelectableTile
           id={idKey}
-          className={`${styles.day_tile}`}
+          className={tileClass}
           value={date.toFormat('yy-mm-dd')}
           onClick={(e: any) => onDayCellClicked(e, date)}
         >
           <span className={labelClass}>
-            {`${date.month} - ${date.day}`}
+            {`${date.day}`}
           </span>
         </SelectableTile>
       }
@@ -117,13 +119,15 @@ const CalenderViewComponent = (props: ICalenderProps) => {
     if (isSelectableState) {
       setDaySelectedState([...daySelectedState,])
     }
+
+    // event emit 
     props.onDayClicked(event, dateTrig);
   }
 
   // ---
 
   let rendGrid = [];
-  let weekDayLabel = ['Monday', 'Tuesday', 'Wedesday', 'Thusday', 'Friday', 'Saturday', 'Sunday'];
+  let weekDayLabel = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   rendGrid.push(
     <Row key="weeky_day_index" condensed>
       <Column className={styles.week_number_indicator}></Column>
@@ -161,20 +165,60 @@ const CalenderViewComponent = (props: ICalenderProps) => {
   }
   return (
     <>
-      <ButtonSet>
-        <div> {currentDate.month}</div>
-        <Button
-          hasIconOnly
-          renderIcon={Add16}
-          iconDescription="Add Event"
-          onClick={() => { }} />
-        {isSelectableState &&
-          <Button kind="danger--tertiary" onClick={() => { setSelectableState(false) }}>
-            Cancel
-          </Button>
-        }
-      </ButtonSet>
-      <Grid fullWidth condensed className={styles.calender_view}>
+      <div className="">
+        <div className="control-left">
+          <div> {currentDate.month}</div>
+        </div>
+
+        <div className="control-right">
+          <Button
+            renderIcon={Add32}
+            iconDescription="Add Remark"
+            tooltipPosition="bottom"
+            hasIconOnly
+            size="sm"
+            onClick={() => { }}
+          />
+
+          {isSelectableState &&
+            <Button kind="danger--tertiary"
+              size="sm"
+              onClick={() => { setSelectableState(false) }}>
+              Cancel
+            </Button>
+          }
+          <Button
+            kind="ghost"
+            renderIcon={CalendarSettings32}
+            iconDescription="Back To Now (Home)"
+            tooltipPosition="bottom"
+            hasIconOnly
+            size="sm"
+            onClick={() => { }}
+          />
+          <Button
+            kind="ghost"
+            renderIcon={ChevronUp32}
+            iconDescription="To Previous Month (PgUp)"
+            tooltipPosition="bottom"
+            hasIconOnly
+            size="sm"
+            onClick={() => { }}
+          />
+          <Button
+            kind="ghost"
+            renderIcon={ChevronDown32}
+            iconDescription="To Next Month (PgDn)"
+            tooltipPosition="bottom"
+            hasIconOnly
+            size="sm"
+            onClick={() => { }}
+          />
+
+        </div>
+      </div >
+
+      <Grid condensed className={styles.calender_view}>
         {rendGrid}
       </Grid>
     </>

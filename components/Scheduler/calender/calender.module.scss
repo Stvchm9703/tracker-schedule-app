@@ -1,17 +1,18 @@
 @import "@carbon/colors/scss";
 
 .calender_view {
-  position: static;
-  height: 80vh;
+  position: relative;
 }
 
 .week_number_indicator {
   display: block;
   flex: 0 1 35px;
 }
+
 .week_number_disp {
   padding-top: 1rem;
 }
+
 .day_cell {
   flex: 1 1;
 }
@@ -19,16 +20,41 @@
 .day_tile {
   height: 100%;
   transition: background-color 0.4s ease-in-out;
+
   &:hover {
-    background-color: #e4f0f5;
+    background-color: $cool-gray-10-hover;
+
+    .day_label {
+      background-color: $cool-gray-20-hover;
+      &.is_today {
+        background-color: $blue-60-hover;
+        color: $cool-gray-10;
+      }
+    }
+  }
+
+  &.not_in_month {
+    background-color: $cool-gray-20;
+    color: $cool-gray-90;
+
+    &:hover {
+      background-color: $cool-gray-20-hover;
+    }
   }
 }
 
-.is_today {
-  background-color: aquamarine;
+.day_label {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  margin-top: -1rem;
+  margin-left: -1rem;
+  text-align: center;
+  transition: background-color 0.4s ease-in-out;
 }
 
-.not_in_month {
-  background-color: $cool-gray-20;
-  color: $cool-gray-90;
+.is_today {
+  background-color: $blue-60;
+  color: $white-0;
 }

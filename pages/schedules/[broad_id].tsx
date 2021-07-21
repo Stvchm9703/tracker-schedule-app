@@ -33,27 +33,25 @@ export default function schedule() {
   // const currentDate = '2018-07-17';
   if (error || er2) return (<div>failed to load</div>);
   if (!data) return (<div>loading...</div>);
+  // const y = (broad_id: string)=> (
+  //   <span>
+  //     hi
+  //   </span>
+  //   { broad_id &&
+  //     <div>
+  //       <span>
+  //         broad_id:  {broad_id}
+  //       </span>
+  //       <br />
+  //       <span>
+  //         data_id : {data.id}
+  //       </span>
+  //     </div>
+  //   }
+  // );
   return (
     <>
-      <span>
-        hi
-      </span>
-      {broad_id &&
-        <div>
-          <span>
-            broad_id:  {broad_id}
-          </span>
-          <br />
-          <span>
-            data_id : {data.id}
-            {/*  data : {JSON.stringify( data.cards)} */}
-          </span>
-        </div>
-      }
-      <SchedulerComponent taskList={data.cards}>
-
-      </SchedulerComponent>
-
+      <SchedulerComponent taskList={data.cards} />
       {/* <Calender appointments={appointments} currentDate={currentDate} /> */}
     </>
   )
