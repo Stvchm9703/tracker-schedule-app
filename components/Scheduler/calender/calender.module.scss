@@ -5,6 +5,21 @@
 .calender_view {
   position: relative;
 }
+.control_left {
+  justify-content: flex-start;
+  flex: 0 1;
+  display: flex;
+}
+.control_mid {
+  justify-content: center;
+  flex: 0 1;
+  display: flex;
+}
+.control_right {
+  justify-content: flex-end;
+  flex: 0 1 ;
+  display: flex;
+}
 
 .week_number_indicator {
   display: block;
@@ -20,14 +35,16 @@
 }
 
 .day_tile {
+  // display: flex;
   height: 100%;
   transition: background-color 0.4s ease-in-out;
-  
+
   &:hover {
     background-color: $cool-gray-10-hover;
 
     .day_label {
       background-color: $cool-gray-20-hover;
+
       &.is_today {
         background-color: $blue-60-hover;
         color: $cool-gray-10;
@@ -59,4 +76,43 @@
 .is_today {
   background-color: $blue-60;
   color: $white-0;
+}
+
+.task_list {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  margin-top: -1.8rem;
+}
+
+.task_item {
+  display: block;
+  background-color: $cool-gray-70;
+  height: 1rem;
+  width: 1rem;
+  transform: rotateZ(45deg);
+  margin: 0.4rem -0.2rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $blue-70-hover;
+  }
+
+  &:first-of-type {
+    margin-left: 1.4rem;
+  }
+}
+
+.task_more_item {
+  padding: 0.3rem 0.5rem;
+  margin-left: 0.35rem;
+  margin-top: -0.1rem;
+  line-height: 1.4rem;
+  cursor: pointer;
+
+  &:hover {
+    color: $blue-70-hover;
+    background-color: $cool-gray-20-hover;
+  }
+
 }
