@@ -33,7 +33,7 @@ export default function schedule() {
   // const currentDate = '2018-07-17';
   if (error || er2) return (<div>failed to load</div>);
   if (!data) return (<div>loading...</div>);
-  // const y = (broad_id: string)=> (
+  // const y = (broad_id: string) => (
   //   <span>
   //     hi
   //   </span>

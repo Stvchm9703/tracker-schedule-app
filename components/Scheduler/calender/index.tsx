@@ -14,6 +14,8 @@ type internalDatyCellEvent = (event: MouseEvent | TouchEvent, day: IDayCellItem)
 
 interface ICalenderProps {
   taskList: Array<any>,
+  startDate?: DateTime,
+  endDate?: DateTime,
   onDayClicked: IDayCellEvent,
   onDaySelected: IDayCellEvent,
   // onScrollUp: Event,
@@ -31,10 +33,9 @@ interface IDayCellItem {
 const renderDayCell = (dateItem: IDayCellItem, isSelectable: boolean, onDayCellClicked: IDayCellEvent, onDayCellLongPressed: IDayCellEvent) => {
   const { date, isToday, inMonth } = dateItem;
   const idKey = date.toFormat('yy-mm-dd');
-  const labelClass = `${styles.day_label} ${isToday ? styles.is_today : ''}`;
+  const labelClass = `${styles.day_label} ${isToday ? styles.is_today : ''} ${date.weekday > 6 ? styles.is_non_working_day : ''}`;
   const tileClass = `${styles.day_tile}  ${(!inMonth ? styles.not_in_month : '')} `;
 
-  console.log({ labelClass });
   // long-press event 
   const onLongPress = (e: MouseEvent | TouchEvent) => onDayCellLongPressed(e, date);
   const longPressEvent = useLongPress(onLongPress, {
@@ -100,8 +101,8 @@ const renderWeekRow = (
 
 const CalenderViewComponent = (props: ICalenderProps) => {
   const currentDate: DateTime = DateTime.now();
-  let the_first_day: DateTime = DateTime.now().startOf('month')
-  let the_last_day: DateTime = DateTime.now().endOf('month')
+  let the_first_day: DateTime = props.startDate ? props.startDate : DateTime.now().startOf('month')
+  let the_last_day: DateTime = props.endDate ? props.endDate : DateTime.now().endOf('month')
 
   let the_first_week_number: number = the_first_day.weekNumber;
   let the_end_week_number: number = the_last_day.weekNumber;

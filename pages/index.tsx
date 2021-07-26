@@ -1,8 +1,8 @@
 import Head from 'next/head'
+import Link from 'next/link'
 // import Image from 'next/image'
 // import { imageLoader } from '@/libs/image-loader';
 import styles from '../styles/Home.module.css'
-
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -51,6 +51,14 @@ export default function Home() {
             </p>
           </a>
         </div>
+        <div className={styles.grid}>
+          <Link href="/schedules"><a className={styles.card}>
+            <h2>Testing : Schedule &rarr;</h2>
+            <p>The Calender View </p>
+          </a></Link>
+
+        </div>
+
       </main>
 
       <footer className={styles.footer}>

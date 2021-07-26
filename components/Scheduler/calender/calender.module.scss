@@ -19,6 +19,26 @@
   flex: 1 1;
 }
 
+.day_label {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  margin-top: -1rem;
+  margin-left: -1rem;
+  text-align: center;
+  transition: background-color 0.4s ease-in-out;
+}
+.is_today {
+  background-color: $blue-60;
+  color: $white-0;
+}
+
+.is_non_working_day {
+  color: $red-60;
+}
+
+
 .day_tile {
   height: 100%;
   transition: background-color 0.4s ease-in-out;
@@ -45,18 +65,3 @@
   }
 }
 
-.day_label {
-  display: block;
-  width: 2rem;
-  height: 2rem;
-  line-height: 2rem;
-  margin-top: -1rem;
-  margin-left: -1rem;
-  text-align: center;
-  transition: background-color 0.4s ease-in-out;
-}
-
-.is_today {
-  background-color: $blue-60;
-  color: $white-0;
-}
