@@ -38,7 +38,7 @@ const renderDayCell = (props: IDayCellProps) => {
   const { date, isToday, inMonth } = props.dateItem;
   const idKey = date.toFormat('yy-mm-dd');
   const labelClass = `${styles.day_label} ${isToday ? styles.is_today : ''}`;
-  const tileClass = `${styles.day_tile}  ${(!inMonth ? styles.not_in_month : '')} `;
+  const tileClass = `${styles.day_tile}  ${(!inMonth ? styles.not_in_month : '')} ${isToday ? styles.is_today : ''}`;
 
   // console.log({ labelClass, dateItem });
   // long-press event 

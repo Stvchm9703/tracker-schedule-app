@@ -1,7 +1,5 @@
 @import "@carbon/colors/scss";
 
-
-
 .calender_view {
   position: relative;
 }
@@ -17,13 +15,16 @@
 }
 .control_right {
   justify-content: flex-end;
-  flex: 0 1 ;
+  flex: 0 1;
   display: flex;
 }
 
 .week_number_indicator {
   display: block;
   flex: 0 1 35px;
+  @media screen and (max-width: 66rem) {
+    display: none;
+  }
 }
 
 .week_number_disp {
@@ -32,33 +33,25 @@
 
 .day_cell {
   flex: 1 1;
-}
-
-.day_label {
-  display: block;
-  width: 2rem;
-  height: 2rem;
-  line-height: 2rem;
-  margin-top: -1rem;
-  margin-left: -1rem;
-  text-align: center;
-  transition: background-color 0.4s ease-in-out;
-}
-.is_today {
-  background-color: $blue-60;
-  color: $white-0;
+  .day_tile {
+    min-width: 0;
+    min-height: 0;
+  }
 }
 
 .is_non_working_day {
   color: $red-60;
 }
 
-
 .day_tile {
   // display: flex;
   height: 100%;
   transition: background-color 0.4s ease-in-out;
-
+  min-width: 0;
+  min-height: 0;
+  @media screen and (max-width: 480px) {
+    padding: 0;
+  }
   &:hover {
     background-color: $cool-gray-10-hover;
 
@@ -80,6 +73,12 @@
       background-color: $cool-gray-20-hover;
     }
   }
+  @media screen and(max-width:480px) {
+    &.is_today {
+      background-color: $blue-60;
+      color: $white-0;
+    }
+  }
 }
 
 .day_label {
@@ -91,11 +90,17 @@
   margin-left: -1rem;
   text-align: center;
   transition: background-color 0.4s ease-in-out;
-}
+  @media screen and (max-width: 480px) {
+    display: contents;
+    margin-top: auto;
+    margin-left: auto;
+    margin: auto;
+  }
 
-.is_today {
-  background-color: $blue-60;
-  color: $white-0;
+  &.is_today {
+    background-color: $blue-60;
+    color: $white-0;
+  }
 }
 
 .task_list {
@@ -103,6 +108,9 @@
   flex-wrap: wrap;
   position: relative;
   margin-top: -1.8rem;
+  @media screen and (max-width: 66rem) {
+    display: none;
+  }
 }
 
 .task_item {
@@ -134,5 +142,4 @@
     color: $blue-70-hover;
     background-color: $cool-gray-20-hover;
   }
-
 }
