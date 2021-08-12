@@ -18,9 +18,9 @@ export default function Layout({ children }) {
   return (
     <main className="container">
       <Header aria-label="IBM Platform Name">
-        <HeaderName href="#" prefix="IBM">
+        {/* <HeaderName href="#" prefix="IBM">
           [Platform]
-        </HeaderName>
+        </HeaderName> */}
         <HeaderGlobalBar>
           <HeaderGlobalAction aria-label="Search" >
             <Search20 />

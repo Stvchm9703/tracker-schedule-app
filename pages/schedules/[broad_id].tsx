@@ -5,8 +5,10 @@ import useSWR from 'swr';
 import { Trello } from '@/interfaces/Trello';
 
 import NavLayout from '@/components/Layouts/index';
+import TestLayout from '@/components/Layouts/default';
 
 import SchedulerComponent from '@/components/Scheduler/application';
+import { ITaskNode } from '@/components/Scheduler/calender';
 
 // trello_broad_id : 5k4uPRg7
 const PageFetchTrello = async (trello_broadid: string) => {
@@ -51,14 +53,21 @@ export default function schedule() {
   // );
   return (
     <>
-      <SchedulerComponent taskList={data.cards} />
+      <SchedulerComponent
+        taskList={data.cards }
+        onScheduleDateChange={(e) => { console.log(e) }} 
+      />
       {/* <Calender appointments={appointments} currentDate={currentDate} /> */}
     </>
   )
 }
-
+//  {/*
+//     <TestLayout> {page} </TestLayout>
+//   */}
 schedule.getLayout = (page: any) => (
   <NavLayout>
     {page}
   </NavLayout>
 );
+
+
