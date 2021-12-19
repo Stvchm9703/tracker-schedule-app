@@ -5,6 +5,7 @@
   overflow: hidden scroll;
   @media screen and (max-width: 66rem) {
     overflow: visible;
+    margin: -1rem;
   }
 }
 
