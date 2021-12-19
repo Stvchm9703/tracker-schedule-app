@@ -14,7 +14,9 @@ const PageFetchTrello = async (trello_broadid: string) => {
   // const { data } = await axios.get(`https://trello.com/b/${trello_broadid}.json`);
   return data as Trello;
 }
-
+const onChange = (e) => {
+    console.log(e);
+  }
 // trello_broadid
 const PageFetchSchedule = async (_: string) => {
   // const { data } = await axios.get(``);
@@ -49,9 +51,11 @@ export default function schedule() {
   //     </div>
   //   }
   // );
+
+  
   return (
     <>
-      <SchedulerComponent taskList={data.cards} />
+      <SchedulerComponent taskList={data.cards as Array<ITaskNode>} onScheduleDateChange={e=> onChange(e)}  />
       {/* <Calender appointments={appointments} currentDate={currentDate} /> */}
     </>
   )

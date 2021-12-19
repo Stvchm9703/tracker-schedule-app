@@ -1,22 +1,13 @@
 import React from "react";
-import {  Column, Tile, SelectableTile } from "carbon-components-react";
+import { Column, Tile, SelectableTile } from "carbon-components-react";
 import styles from './calender.module.scss';
 import { DateTime } from "luxon";
 import { useLongPress } from "react-use"
 
-
+import type { ITaskEvent, ITaskNode } from "./event";
 
 export type IDayCellEvent = (event: MouseEvent | TouchEvent, day: DateTime) => any | void;
-export type ITaskEvent = (event: MouseEvent | TouchEvent, node: ITaskNode) => any | void;
 
-
-export interface ITaskNode {
-  id: Number,
-  project_id: string,
-  title: string,
-  startTime: DateTime,
-  endTime: DateTime,
-}
 
 
 export interface IDayCellItem {
@@ -64,14 +55,14 @@ const renderDayCell = (props: IDayCellProps) => {
         >
           <span className={labelClass}> {`${date.day}`} </span>
           <div className={styles.task_list}>
-            {props.dateItem.events.slice(0, 4).map((node: ITaskNode) =>
+            {props.dateItem.events.slice(0, 4).map((node: ITaskNode) =>(
               <div
                 id={`task-id-${node.id}`}
                 className={`task-${node.id} ${styles.task_item}`}
                 key={`task-${node.id}`}
                 onClick={(e: any) => props.onTaskClicked(e as MouseEvent, node)}
               >
-              </div>
+              </div>)
 
             )}
             {(props.dateItem.events.length > 4) &&
