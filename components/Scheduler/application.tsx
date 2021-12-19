@@ -4,12 +4,14 @@ import { IDayCellEvent } from './calender/day';
 import type { ITaskNode } from './calender/event';
 import { DateTime } from 'luxon';
 
+
+export type IScheduleDateChangeEvent = (
+  prevVal: DateStateUpdateSet,
+  currVal: DateStateUpdateSet
+) => (any | void);
 interface IScheduleProps {
   taskList: Array<ITaskNode>,
-  onScheduleDateChange: (
-    prevVal?: DateStateUpdateSet,
-    currVal?: DateStateUpdateSet,
-  ) => (any | void),
+  onScheduleDateChange?: IScheduleDateChangeEvent,
 }
 export interface DateStateUpdateSet {
   startTime: DateTime,
@@ -34,11 +36,13 @@ const useSchedulerState = (props: IScheduleProps) => {
 
   // effect 
   useEffect(() => {
+    // * update the display-date date-range
     let updated: DateStateUpdateSet = {
       startTime: state.startDate,
       endTime: state.endDate,
     };
     props.onScheduleDateChange(prevDateRef.current, updated);
+
     prevDateRef.current = updated
   }, [state.startDate, state.endDate])
 

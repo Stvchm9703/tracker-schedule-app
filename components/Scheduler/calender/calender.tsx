@@ -37,6 +37,9 @@ const useCalenderState = (props: ICalenderProps) => {
   let endDate = props.endDate ? props.endDate : startDate.plus({ weeks: 5 });
   let isSelectable = false;
   let dateItem = generateWeekRowObj(DateTime.now(), startDate, endDate, props.taskList, isSelectable);
+  // let dateItem2 = generateWeekRowObj2(DateTime.now(), startDate, endDate, props.taskList, isSelectable);
+
+  // console.log({dateItem ,dateItem2})
   const [state, setState] = useState({
     startDate, endDate, dateItem, isSelectable,
     currentMonth: DateTime.now().month,

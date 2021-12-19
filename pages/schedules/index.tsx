@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import { Trello } from '@/interfaces/Trello';
 import NavLayout from '@/components/Layouts/index';
+import TestLayout from '@/components/Layouts/default';
+
 import SchedulerComponent from '@/components/Scheduler/application';
 import { ITaskNode } from '@/components/Scheduler/calender';
 
@@ -74,6 +76,11 @@ scheduleList.getLayout = (page: any) => (
     {page}
   </NavLayout>
 );
+//{/* <TestLayout> {page} </TestLayout> */}
+// <NavLayout>
+//   {page}
+// </NavLayout>
+// );
 
 
 

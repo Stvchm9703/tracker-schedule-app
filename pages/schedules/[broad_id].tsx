@@ -5,8 +5,10 @@ import useSWR from 'swr';
 import { Trello } from '@/interfaces/Trello';
 
 import NavLayout from '@/components/Layouts/index';
+import TestLayout from '@/components/Layouts/default';
 
 import SchedulerComponent from '@/components/Scheduler/application';
+import type { ITaskNode } from '@/components/Scheduler/calender';
 
 // trello_broad_id : 5k4uPRg7
 const PageFetchTrello = async (trello_broadid: string) => {
@@ -15,8 +17,8 @@ const PageFetchTrello = async (trello_broadid: string) => {
   return data as Trello;
 }
 const onChange = (e) => {
-    console.log(e);
-  }
+  console.log(e);
+}
 // trello_broadid
 const PageFetchSchedule = async (_: string) => {
   // const { data } = await axios.get(``);
@@ -30,39 +32,21 @@ export default function schedule() {
   const { broad_id } = router.query;
   const { data, error } = useSWR(broad_id, PageFetchTrello);
   const schedule = useSWR(broad_id, PageFetchSchedule);
-  // let appointments = schedule.data;
   let er2 = schedule.error;
-  // const currentDate = '2018-07-17';
   if (error || er2) return (<div>failed to load</div>);
   if (!data) return (<div>loading...</div>);
-  // const y = (broad_id: string) => (
-  //   <span>
-  //     hi
-  //   </span>
-  //   { broad_id &&
-  //     <div>
-  //       <span>
-  //         broad_id:  {broad_id}
-  //       </span>
-  //       <br />
-  //       <span>
-  //         data_id : {data.id}
-  //       </span>
-  //     </div>
-  //   }
-  // );
 
-  
   return (
     <>
-      <SchedulerComponent taskList={data.cards as Array<ITaskNode>} onScheduleDateChange={e=> onChange(e)}  />
+      <SchedulerComponent taskList={data.cards} onScheduleDateChange={e => onChange(e)} />
       {/* <Calender appointments={appointments} currentDate={currentDate} /> */}
     </>
   )
 }
-
 schedule.getLayout = (page: any) => (
   <NavLayout>
     {page}
   </NavLayout>
 );
+
+

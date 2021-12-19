@@ -3,6 +3,9 @@
 .calender_container {
   height: #{'calc(100vh - 7rem)'};
   overflow: hidden scroll;
+  @media screen and (max-width: 66rem) {
+    overflow: visible;
+  }
 }
 
 .controller_row {
@@ -13,23 +16,29 @@
 }
 
 .calender_view {
-  position: relative;
+  @media screen and (max-width: 66rem) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+.calender_view_ctrl {
+  justify-content: space-between;
 }
 
 .control_left {
-  justify-content: flex-start;
+  justify-self: flex-start;
   flex: 0 1;
   display: flex;
 }
 
 .control_mid {
-  justify-content: center;
+  justify-self: center;
   flex: 0 1;
   display: flex;
 }
 
 .control_right {
-  justify-content: flex-end;
+  justify-self: flex-end;
   flex: 0 1;
   display: flex;
 }
@@ -58,6 +67,18 @@
   padding-top: 1rem;
 }
 
+/*
+ 
+       _                        _ _ 
+      | |                      | | |
+    __| | __ _ _   _    ___ ___| | |
+   / _` |/ _` | | | |  / __/ _ \ | |
+  | (_| | (_| | |_| | | (_|  __/ | |
+   \__,_|\__,_|\__, |  \___\___|_|_|
+                __/ |               
+               |___/                
+*/
+
 .day_cell {
   flex: 1 1;
 
@@ -77,8 +98,7 @@
   transition: background-color 0.4s ease-in-out;
   min-width: 0;
   min-height: 0;
-
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 640px) {
     padding: 0;
   }
 
@@ -103,11 +123,19 @@
       background-color: $cool-gray-20-hover;
     }
   }
-
-  @media screen and(max-width:480px) {
+  @media screen and(max-width:640px) {
     &.is_today {
       background-color: $blue-60;
       color: $white-0;
+    }
+  }
+
+  // Selectable-Tile
+  @media screen and(max-width:66rem) {
+    :global .bx--tile__checkmark {
+      top: 0;
+      right: 0;
+      height: 1rem;
     }
   }
 }
@@ -121,12 +149,15 @@
   margin-left: -1rem;
   text-align: center;
   transition: background-color 0.4s ease-in-out;
-
-  @media screen and (max-width: 480px) {
-    display: contents;
+  @media screen and (max-width: 640px) {
+    display: block;
     margin-top: auto;
     margin-left: auto;
     margin: auto;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    line-height: 2.5rem;
   }
 
   &.is_today {
@@ -134,6 +165,17 @@
     color: $white-0;
   }
 }
+
+/*
+ 
+   _            _      _ _                     
+  | |          | |    (_) |                    
+  | |_ __ _ ___| | __  _| |_ ___ _ __ ___  ___ 
+  | __/ _` / __| |/ / | | __/ _ \ '_ ` _ \/ __|
+  | || (_| \__ \   <  | | ||  __/ | | | | \__ \
+   \__\__,_|___/_|\_\ |_|\__\___|_| |_| |_|___/
+                                               
+*/
 
 .task_list {
   display: flex;
